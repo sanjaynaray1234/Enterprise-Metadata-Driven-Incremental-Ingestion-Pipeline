@@ -7,7 +7,7 @@ Instead of creating hardcoded, high-maintenance pipelines for individual tables,
 
 ---
 ## Architecture
-architecture/architecture.md
+architecture/ architecture.md
 
 ## Key Technical Achievements & Architecture
 - **High Volume Scalability:** Built and validated the ingestion logic against a synthetic insurance transactions dataset scaled to over **1,000,000 rows**, confirmed via pipeline monitoring (75.245 MB read, 1,000,006 rows read/written in a single run).
@@ -85,31 +85,31 @@ All screenshots live in the `screenshots/` folder. Save each one using the filen
 **1. `01-pipeline-canvas.png` — Pipeline Overview**
 The `p_ingestion_incremental` pipeline canvas showing all four activities wired together: the two parallel watermark Lookups feeding into `Copy delta_data`, which feeds into `Stored procedure1`.
 ```
-![Pipeline overview](screenshots/01-pipeline-canvas.png)
+![Pipeline overview](screenshots/ 01-pipeline-canvas.png)
 ```
 
 **2. `02-source-dataset.png` — Source Dataset Configuration**
 The `AzureSqlTable1` dataset pointing at the `AzureSqlDatabase1` linked service, with the table dropdown set to `dbo/WatermarkTable` — confirms the Lookup activities are wired to the correct source.
 ```
-![Source dataset](screenshots/02-source-dataset.png)
+![Source dataset](screenshots/ 02-source-dataset.png)
 ```
 
 **3. `03-source-data-preview.png` — Source Table Preview**
 Query editor preview of `Customer_Transactions`, showing the raw schema (`TransactionID`, `CustomerName`, `PolicyType`, `PremiumAmount`, `LastModifiedDate`) and sample rows before scaling up the dataset.
 ```
-![Source table preview](screenshots/03-source-data-preview.png)
+![Source table preview](screenshots/ 03-source-data-preview.png)
 ```
 
 **4. `04-watermark-table.png` — Watermark Table State**
 `WatermarkTable` showing a single control row (`Customer_Transactions`, with its stored `WatermarkValue` timestamp) — this is what `Lkp_get_old_watermark` reads on every run.
 ```
-![Watermark table](screenshots/04-watermark-table.png)
+![Watermark table](screenshots/ 04-watermark-table.png)
 ```
 
 **5. `05-view-and-procedure.png` — View & Stored Procedure Definitions**
 Explorer view of `Customer_Transactions_View` and the `usp_write_watermark` stored procedure with its two input parameters (`@LastModifiedDate`, `@TableName`) — the two objects that make the metadata-driven loop possible.
 ```
-![View and stored procedure](screenshots/05-view-and-procedure.png)
+![View and stored procedure](screenshots/ 05-view-and-procedure.png)
 ```
 
 **6. `06-view-query-result.png` — View Query at Scale**
