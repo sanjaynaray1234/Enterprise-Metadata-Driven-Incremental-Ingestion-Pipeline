@@ -8,6 +8,7 @@ Instead of creating hardcoded, high-maintenance pipelines for individual tables,
 ---
 ## Architecture
 architecture/ architecture.md
+![Enterprise Insurance Data Platform Architecture](architecture/architecture.png)
 
 ## Key Technical Achievements & Architecture
 - **High Volume Scalability:** Built and validated the ingestion logic against a synthetic insurance transactions dataset scaled to over **1,000,000 rows**, confirmed via pipeline monitoring (75.245 MB read, 1,000,006 rows read/written in a single run).
