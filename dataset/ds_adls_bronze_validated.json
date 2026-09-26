@@ -1,0 +1,19 @@
+{
+	"name": "ds_adls_bronze_validated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "bronze-validated"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

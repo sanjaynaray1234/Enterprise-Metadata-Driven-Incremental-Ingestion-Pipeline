@@ -17,6 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select * from Customer_transactions_view",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -41,7 +42,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select max(LastModifiedDate) as NewWatermarkValue from Customer_transactions_view",
+						"sqlReaderQuery": "select * from Customer_transactions_view",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -79,10 +80,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "SELECT * FROM Customer_transactions_view\nWHERE LastModifiedDate > '@{activity('Lkp_get_old_watermark').output.firstRow.WatermarkValue}' \nAND LastModifiedDate <= '@{activity('Lkp_get_new_watermark').output.firstRow.NewWatermarkValue}'",
-							"type": "Expression"
-						},
+						"sqlReaderQuery": "SELECT * FROM Customer_transactions_view\r\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -141,7 +139,7 @@
 					"storedProcedureName": "[dbo].[usp_write_watermark]",
 					"storedProcedureParameters": {
 						"LastModifiedDate": {
-							"value": "@formatDateTime(activity('Lkp_get_new_watermark').output.firstRow.NewWatermarkValue, 'yyyy-MM-dd HH:mm:ss')",
+							"value": null,
 							"type": "DateTime"
 						},
 						"TableName": {
